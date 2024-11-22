@@ -10,11 +10,20 @@ export interface ITalk {
   description: string;
 }
 
+export interface ContactInfo {
+  title: string;
+  hostText: string;
+  hostLink: string;
+  talkText: string;
+  talkLink: string;
+}
+
 export interface IEventDetails {
   title: string;
   date: string;
   host: string;
   address: string;
+  contact?: ContactInfo;
 }
 
 export interface ICommunityEvent {

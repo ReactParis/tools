@@ -1,5 +1,3 @@
-import { css } from "../../styled-system/css";
-import { flex } from "../../styled-system/patterns";
 import { ICommunityEvent } from "../types";
 
 export interface SlideCommunityTalkProps {
@@ -9,58 +7,28 @@ export interface SlideCommunityTalkProps {
 export function SlideCommunityEvents(props: SlideCommunityTalkProps) {
   const { events } = props;
   return (
-    <div className={flex({ direction: "column", p: "8", grow: 1 })}>
+    <div className="flex flex-col p-8 grow">
       <div>
-        <h1
-          className={css({
-            fontSize: "24",
-            fontWeight: "bold",
-            textAlign: "center",
-            color: "{colors.tertiary}",
-          })}
-        >
+        <h1 className="text-2xl font-bold text-center text-primary">
           Upcoming Community Events
         </h1>
       </div>
-      <div
-        className={flex({
-          direction: "column",
-          justifyContent: "center",
-          grow: 1,
-        })}
-      >
+      <div className="flex flex-col justify-center grow">
         {events.map((event) => (
           <div
             key={event.title}
-            className={flex({
-              direction: "row",
-              py: "3",
-            })}
+            className="flex flex-row py-3"
           >
-            <p
-              className={css({
-                fontSize: "16",
-                textAlign: "left",
-              })}
-            >
-              <span
-                className={css({
-                  opacity: 0.9,
-                })}
-              >
+            <p className="text-base text-left">
+              <span className="text-secondary">
                 {event.date}
               </span>
               <br />
-              <span
-                className={css({
-                  fontVariant: "small-caps",
-                  fontWeight: "bold",
-                })}
-              >
+              <span className="font-bold font-[small-caps]">
                 {event.title}
               </span>
               <br />
-              <span className={css({ color: "{colors.tertiary}" })}>
+              <span className="text-text-tertiary">
                 by {event.groupName}
               </span>
             </p>

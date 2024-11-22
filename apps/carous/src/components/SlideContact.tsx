@@ -1,58 +1,28 @@
-import { css } from "../../styled-system/css";
-import { flex } from "../../styled-system/patterns";
+import { ContactInfo } from '../types';
 
-export function SlideContact() {
-  const linkHost = "https://github.com/ReactParis";
-  const linkTalk = "https://github.com/ReactParis/talks";
+interface SlideContactProps {
+  contact: ContactInfo;
+}
 
+export function SlideContact({ contact }: SlideContactProps) {
   return (
-    <div
-      className={flex({
-        direction: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        p: "8",
-        grow: 1,
-      })}
-    >
-      <h1
-        className={css({
-          fontSize: "24",
-          fontWeight: "bold",
-          textAlign: "center",
-          color: "{colors.tertiary}",
-        })}
-      >
-        Contact
+    <div className="flex flex-col justify-center items-center p-8 grow">
+      <h1 className="text-2xl font-bold text-center text-primary">
+        {contact.title}
       </h1>
-      <div
-        className={flex({
-          direction: "column",
-          justifyContent: "center",
-          alignItems: "center",
-          grow: 1,
-          gap: "32px", // Added space between elements
-        })}
-      >
-        <p
-          className={css({
-            fontSize: "20px", // Made the font size bigger
-            textAlign: "center",
-            margin: "16px 0", // Added more space around the paragraph
-          })}
-        >
-          Vous souhaitez hoster un meetup ?<br />
-          <a href={linkHost} target="_blank" rel="noopener">
-            {linkHost}
+      <div className="flex flex-col justify-center items-center grow gap-8">
+        <p className="text-xl text-center my-4">
+          {contact.hostText}<br />
+          <a href={contact.hostLink} target="_blank" rel="noopener" className="text-primary hover:text-secondary transition-colors">
+            {contact.hostLink}
           </a>
           <br />
-          <span className={css({ display: "block", my: "2" })}>
-            {" "}
-            ou proposer un talk ?
+          <span className="block my-2">
+            {contact.talkText}
           </span>
           <br />
-          <a href={linkTalk} target="_blank" rel="noopener">
-            {linkTalk}
+          <a href={contact.talkLink} target="_blank" rel="noopener" className="text-primary hover:text-secondary transition-colors">
+            {contact.talkLink}
           </a>
         </p>
       </div>

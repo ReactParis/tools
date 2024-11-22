@@ -1,20 +1,15 @@
-import { styled } from "../../styled-system/jsx";
+interface AppShellProps {
+  children?: React.ReactNode;
+}
 
-export const AppShell = styled("div", {
-  base: {
-    display: "flex",
-    flexFlow: "row nowrap",
-  },
-});
+export function AppShell({ children }: AppShellProps) {
+  return <div className="flex flex-row flex-nowrap">{children}</div>;
+}
 
-export const AppShellSidebar = styled("div", {
-  base: {
-    flexGrow: 2,
-  },
-});
+export function AppShellSidebar({ children }: AppShellProps) {
+  return <div className="flex-1">{children}</div>;
+}
 
-export const AppShellCanvas = styled("div", {
-  base: {
-    flexGrow: 2,
-  },
-});
+export function AppShellCanvas({ children }: AppShellProps) {
+  return <div className="flex-2">{children}</div>;
+}

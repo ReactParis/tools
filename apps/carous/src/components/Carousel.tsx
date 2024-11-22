@@ -1,16 +1,16 @@
-import { styled } from "../../styled-system/jsx";
+interface CarouselCanvasProps {
+  children?: React.ReactNode;
+  className?: string;
+}
 
-const CarouselCanvas = styled("div", {
-  base: {
-    width: "[540px]",
-    height: "[540px]",
-    bgGradient: "to-b",
-    gradientFrom: "{colors.bg}",
-    gradientTo: "{colors.bg2}",
-    color: "{colors.text}",
-    display: "flex",
-    flexFlow: "column nowrap",
-  },
-});
+const CarouselCanvas = ({ children, className }: CarouselCanvasProps) => {
+  return (
+    <div
+      className={`w-[540px] h-[540px] bg-gradient-to-b from-background to-background-secondary text-text flex flex-col ${className || ""}`}
+    >
+      {children}
+    </div>
+  );
+};
 
 export default CarouselCanvas;

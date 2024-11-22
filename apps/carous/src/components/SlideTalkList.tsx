@@ -1,85 +1,58 @@
 import { IEventDetails, ITalk } from "../types";
-import { css } from "../../styled-system/css";
-import { circle, flex } from "../../styled-system/patterns";
 import Image from "./Image";
 
 export interface SlideTalkListProps {
   talks: ITalk[];
   eventDetails: IEventDetails;
+  info?: boolean;
 }
 export default function SlideTalkList(props: SlideTalkListProps) {
-  const { eventDetails } = props;
-  const { title } = eventDetails;
+  const { eventDetails, info = true } = props;
+  const title = eventDetails.title;
   return (
-    <div className={flex({ direction: "column", p: "8", grow: 1 })}>
-      <div>
-        <h1
-          className={css({
-            fontSize: "24",
-            fontWeight: "bold",
-            textAlign: "center",
-            color: "{colors.tertiary}",
-          })}
-        >
-          {title}
-        </h1>
-        {/* date */}
-        <p className={css({ fontSize: "16", textAlign: "center" })}>
-          {eventDetails.date}
-          <br />
-          <strong>{eventDetails.host}</strong>,&nbsp;
-          <span>{eventDetails.address}</span>
-        </p>
-      </div>
+    <div className="flex flex-col p-8 grow">
+      {info && (
+        <div>
+          <h1 className="text-2xl font-bold text-center text-primary">
+            {title}
+          </h1>
+          {/* date */}
+          <p className="text-base text-center text-secondary">
+            {eventDetails.date}
+            <br />
+            <strong>{eventDetails.host}</strong>,&nbsp;
+            <span>{eventDetails.address}</span>
+          </p>
+        </div>
+      )}
       <div
-        className={flex({
-          direction: "column",
-          justifyContent: "center",
-          grow: 1,
-        })}
+        className="flex flex-col justify-center grow"
       >
         {props.talks.map((talk) => (
           <div
             key={talk.title}
-            className={flex({
-              direction: "row",
-              py: "3",
-            })}
+            className="flex flex-row py-3"
           >
             {/* Speaker image */}
-            <div className={flex({ shrink: 0, basis: "20" })}>
+            <div className="flex-shrink-0 basis-20">
               <Image
                 src={talk.speaker.profilePicture}
                 alt={talk.speaker.name}
-                className={circle({
-                  size: "20",
-                  borderWidth: "3",
-                  borderColor: "secondary",
-                  borderStyle: "solid",
-                })}
+                className="w-20 h-20 rounded-full border-3 border-primary border-solid object-cover"
               />
             </div>
 
             <div
-              className={flex({
-                grow: 5,
-                direction: "column",
-                pl: "4",
-                alignSelf: "center",
-                textAlign: "left",
-              })}
+              className="grow-[5] flex flex-col pl-4 self-center text-left"
             >
-              <div className={css({ fontSize: "16", fontWeight: "bold" })}>
+              <div className="text-base font-bold text-primary">
                 {talk.title}
               </div>
               <div
-                className={css({
-                  fontSize: "14",
-                  color: "{colors.textSecondary}",
-                })}
+                className="text-sm"
               >
-                <span className={css({ fontStyle: "italic" })}>by</span>&nbsp;
-                <span className={css({ fontWeight: "bold" })}>
+                <span className="italic text-text-tertiary">by</span>&nbsp;
+                <span className="font-bold text-primary">
                   {talk.speaker.name}
                 </span>
               </div>

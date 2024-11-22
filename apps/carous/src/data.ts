@@ -1,65 +1,69 @@
 import { ITalk } from "./types";
+import wewantyou from "../wewantyou.jpg";
 
 export const eventDetails = {
-  title: "React Paris Meetup #1",
-  date: "28 mai 2024 19h",
-  host: "Mobiskill",
-  address: "1 Rue Ambroise Thomas, 75009 Paris",
+  title: "React Paris Meetup #5",
+  date: "Mercredi 20 Novembre 2024 19h",
+  host: "Algolia",
+  address: "55 Rue d'Amsterdam, 75008 Paris",
 };
+
 export const communityMeetups = [
   {
-    groupName: "Remix Paris",
-    title: "Bonjour Remix!",
-    date: "Jeudi 30 Mai 2024",
+    groupName: "React Native Paris",
+    title: "React Native Paris #6",
+    date: "Jeudi 28 Novembre 2024",
+    location: "chez PMU",
   },
   {
-    groupName: "ParisJS",
-    title: "Hors Série: dotJS ⨉ Paris.JS",
-    date: "Mercredi 5 Juin 2024",
+    groupName: "Vue.js Paris",
+    title: "Vue.js Paris #28",
+    date: "Merciredi 4 Décembre 2024",
+    location: "TBD",
   },
   {
-    groupName: "Paris TypeScript",
-    title: "Paris TypeScript #38",
-    date: "Mardi 11  Juin 2024",
+    groupName: "Node.js Paris",
+    title: "Node.js Paris #3, Chapitre 12",
+    date: "Mercredi 11 Décembre 2024",
+    location: "chez Takima",
   },
 ];
 
 export const talks: ITalk[] = [
   {
-    title:
-      "How we render big graphs of execution at Yandex using canvas and preact signals",
-    description: `The presentation will delve into using React and Canvas for graph rendering in the context of visualizing lengthy processes, like machine learning pipelines. The platform's frontend relies on a graph of execution, utilizing Canvas, React, Signals, and optimizations to render these visuals effectively.`,
+    title: "Débugger un composant React legacy : cas pratique",
+    description: `Dans une codebase partagée, il est inévitable qu'un·e développeur·se se retrouve face à un bug sur un composant qu'il·elle n'a jamais touché, et dont les créateurs ont quitté l'entreprise depuis longtemps. 
+
+Alors, comment s'y prendre pour résoudre le problème sans tout casser ? Cette présentation revient sur un exemple concret : le débugging d'un autocomplete capricieux. Du diagnostic initial à la résolution, les différentes étapes seront illustrées avec des astuces pratiques pour aborder le code legacy sereinement, éviter les pièges et avancer efficacement sans repartir de zéro.`,
     speaker: {
-      name: "Eugène Sudakov",
-      title: "Frontend Engineer at Yandex Cloud",
+      name: "Alphonse Bouy",
+      title: "Software Engineer",
       profilePicture:
-        "https://media.licdn.com/dms/image/D4D03AQGAOU_M2w8plQ/profile-displayphoto-shrink_800_800/0/1712038528382?e=1721260800&v=beta&t=o7M04Vua4-Z8S-hrfh9Ai0FvMtVtbOZSHOgS6wNW6x0",
+        "https://media.licdn.com/dms/image/v2/D4E03AQFcow71RcaZtg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1668933416216?e=1737590400&v=beta&t=tfHmp-JACnDvH0Mh45gzm0ZMekKvl44fhv9uexZAA8s",
     },
   },
   {
-    title: "React Server Components 101",
-    description: `Dans cette session, nous découvrirons les React Server Components (RSC), une nouvelle fonctionnalité passionnante qui aura d'énormes implications sur les performances de chargement des pages, la taille des bundles et la façon dont nous écrirons les applications React dans un avenir proche.
+    title: "Adopter pas-à-pas React 19 (via Next.js 15)",
+    description: `Ce talk présente Next.js 15, le premier framework stable permettant d’utiliser React 19 en production, avec un focus sur l’adoption des React Server Components.
 
-Nous explorerons l'architecture de RSC et ses concepts de base, ainsi que des cas d'utilisation pratiques illustrant la mise en œuvre et les avantages de RSC.
-
-Vous apprendrez comment écrire les applications React de demain avec les composants serveur et comprendrez en profondeur ce sur quoi l'équipe React a travaillé.`,
+Il est structuré en deux phases : d'abord la séparation d'une page web en fichiers serveur et client, puis l’optimisation de cette séparation pour le rendu des composants.`,
     speaker: {
-      name: "Kawtar Choubari",
-      title: "Software Engineer @Alobees, Part-time content creator",
+      name: "Luther Tchofo Safo",
+      title: "Full Stack Dev, Freelance",
       profilePicture:
-        "https://media.licdn.com/dms/image/D4E03AQFJYDjBZtHBcw/profile-displayphoto-shrink_800_800/0/1697743890930?e=1721260800&v=beta&t=9Qi144XGAAfWNCKZ34GxSOTgtBHwpQdZwjPKw-EIvq8",
+        "https://media.licdn.com/dms/image/v2/D5603AQFwVYbvRvET1w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1664731733133?e=1736985600&v=beta&t=eSowUayShmQhOx_Ukd4fTYjpMN7wuH63x4quccoLGyU",
     },
   },
   {
-    title: "How fast refresh works in React ",
-    description: `
-Le Hot Module Replacement (HMR) facilite le développement en permettant des mises à jour dynamiques des modules sans perdre l'état de l'application. Fast Refresh améliore cette technologie pour React, garantissant une mise à jour fluide des composants. Vite, avec son système de plugins, tire pleinement parti de cette fonctionnalité avancée.
+    title: "Réactivité granulaire en React mais sans React Compiler",
+    description: `Atteindre une réactivité fine dans une application React sans en compromettre l'expérience développeur a toujours été un défi majeur.
 
-Ce talk présente Fast Refresh, ses limitations et son intégration au sein de Vite via le système de plugins.`,
+Lors de la conception d'applications temps réel conçues pour afficher des centaines de millions de lignes sans latence perceptible, une réactivité fine est clé. Explorons ensemble comment nous avons réussi à ingérer, afficher et mettre à jour d'immenses ensembles de données de manière fluide, sans sacrifier l'expérience développeur ni l'expérience utilisateur.`,
     speaker: {
-      name: "Arnaud Barré",
-      title: "Software engineer @ Carbometrix (& Vite team member)",
-      profilePicture: "https://avatars.githubusercontent.com/u/14235743?v=4",
+      name: "Nicolas Dubien",
+      title: "Senior Engineer @Pigment",
+      profilePicture:
+        "https://media.licdn.com/dms/image/v2/C4D03AQFcyRSWhwgcLA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1566851192829?e=1736985600&v=beta&t=gz7ri1e5zBhlSyzELCiASHNRK6cGrF2VgMH-L6W8F50",
     },
   },
 ];
