@@ -1,14 +1,9 @@
 import { z } from "zod";
 import { useState } from "react";
 import Editor from "@monaco-editor/react";
-import { defaultEvent } from "../utils/storage";
 import React from "react";
 
-interface EventFormProps {
-  initialEvent?: any;
-  onSubmit: (event: any) => void;
-  onCancel: () => void;
-}
+import { EventFormProps, IEvent } from "../types/events";
 
 const defaultEventTemplate = {
   id: "",
@@ -80,7 +75,7 @@ export function EventForm({
     const event = initialEvent || defaultEventTemplate;
     return JSON.stringify(event, null, 2);
   });
-  const safeJson = React.useMemo(() => {
+  const safeJson = React.useMemo<Partial<IEvent>>(() => {
     try {
       return JSON.parse(editorContent);
     } catch (err) {
@@ -118,7 +113,11 @@ export function EventForm({
             height="100%"
             defaultLanguage="json"
             value={editorContent}
-            onChange={(value) => setEditorContent(value || JSON.stringify(defaultEventTemplate, null, 2))}
+            onChange={(value) =>
+              setEditorContent(
+                value || JSON.stringify(defaultEventTemplate, null, 2),
+              )
+            }
             options={{
               minimap: { enabled: false },
               formatOnPaste: true,

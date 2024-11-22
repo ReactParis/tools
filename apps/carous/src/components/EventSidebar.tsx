@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { IEvent } from "../types/events";
+
 import {
   getEvents,
   saveEvent,
@@ -8,23 +10,15 @@ import {
 import { EventForm } from "./EventForm";
 import { DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 
-interface Event {
-  id: string;
-  name: string;
-  eventDetails: any;
-  communityMeetups: any[];
-  talks: any[];
-}
-
 interface EventSidebarProps {
-  onEventSelect: (event: Event) => void;
+  onEventSelect: (event: IEvent | null) => void;
 }
 
 export function EventSidebar({ onEventSelect }: EventSidebarProps) {
-  const [events, setEvents] = useState<Event[]>([]);
+  const [events, setEvents] = useState<IEvent[]>([]);
   const [selectedEventId, setSelectedEventId] = useState<string>();
   const [isEditing, setIsEditing] = useState(false);
-  const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+  const [editingEvent, setEditingEvent] = useState<IEvent | null>(null);
 
   useEffect(() => {
     loadEvents();
@@ -44,7 +38,7 @@ export function EventSidebar({ onEventSelect }: EventSidebarProps) {
     setIsEditing(true);
   };
 
-  const handleEditEvent = (event: Event) => {
+  const handleEditEvent = (event: IEvent) => {
     setEditingEvent(event);
     setIsEditing(true);
   };
@@ -60,13 +54,13 @@ export function EventSidebar({ onEventSelect }: EventSidebarProps) {
           onEventSelect(nextEvent);
         } else {
           setSelectedEventId(undefined);
-          onEventSelect(null as any);
+          onEventSelect(null);
         }
       }
     }
   };
 
-  const handleSubmit = (event: Event) => {
+  const handleSubmit = (event: IEvent) => {
     const updatedEvents = saveEvent(event);
     setEvents(updatedEvents);
     setIsEditing(false);
@@ -77,6 +71,7 @@ export function EventSidebar({ onEventSelect }: EventSidebarProps) {
   const handleCopyEvent = async (eventId: string) => {
     try {
       const event = events.find((e) => e.id === eventId);
+      if (!event) return;
       const updatedEvents = await saveEvent({
         ...event,
         id: `${event.id}-copy-${Date.now()}`,
@@ -95,7 +90,7 @@ export function EventSidebar({ onEventSelect }: EventSidebarProps) {
           {editingEvent ? "Edit Event" : "Add New Event"}
         </h2>
         <EventForm
-          initialEvent={editingEvent}
+          initialEvent={editingEvent || undefined}
           onSubmit={handleSubmit}
           onCancel={() => setIsEditing(false)}
         />
