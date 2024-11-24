@@ -1,30 +1,96 @@
-# React + TypeScript + Vite
+# React Paris Meetup Carousel
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React application for creating and displaying meetup event carousels for React Paris events.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone the repository and navigate to the project directory:
 
-## Expanding the ESLint configuration
+```bash
+git clone <repository-url>
+cd <repository-name>/apps/carous
+```
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Install dependencies using pnpm:
 
-- Configure the top-level `parserOptions` property like this:
+```bash
+pnpm install
+```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
+3. Start the development server:
+
+```bash
+pnpm dev
+```
+
+## Usage
+
+### Creating a New Carousel
+
+1. Click "Add Event" in the sidebar
+2. Either:
+   - Manually enter event details in JSON format
+   - Click "Generate with ChatGPT" to get help creating an event
+3. Click "Save Event" when done
+
+### Customizing Themes
+
+1. Open `src/themes/config.ts`
+2. Add or modify theme configurations
+3. Update theme name in `ThemeSwitcher` component
+
+Example theme configuration:
+
+```typescript
+export const themes = {
+  myNewTheme: {
+    background: "#ffffff",
+    primary: "#007bff",
+    secondary: "#6c757d",
+    text: "#000000",
   },
+};
+```
+
+### Event JSON Structure
+
+Events follow this structure:
+
+```json
+{
+  "id": "unique-id",
+  "name": "Event Name",
+  "eventDetails": {
+    "title": "Event Title",
+    "date": "Event Date",
+    "host": "Host Name",
+    "address": "Event Address"
+  },
+  "communityMeetups": [
+    {
+      "groupName": "Community Name",
+      "title": "Meetup Title",
+      "date": "Meetup Date",
+      "location": "Location"
+    }
+  ],
+  "talks": [
+    {
+      "title": "Talk Title",
+      "description": "Talk Description",
+      "speaker": {
+        "name": "Speaker Name",
+        "title": "Speaker Title",
+        "profilePicture": "URL to photo"
+      }
+    }
+  ]
 }
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Development
+
+- Built with React + Vite
+- Uses TypeScript for type safety
+- Styled with Tailwind CSS
+- Monaco Editor for JSON editing
